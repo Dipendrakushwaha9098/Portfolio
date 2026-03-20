@@ -1,12 +1,14 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
+
 const stats = [
   { value: "3+", label: "Projects Built", accent: "#61DAFB", bg: "#0d2a33" },
   { value: "2+", label: "Years Coding", accent: "#FFD43B", bg: "#2a2200" },
   { value: "5+", label: "Tech Stacks", accent: "#47A248", bg: "#081a08" },
   { value: "∞", label: "Ideas Brewing", accent: "#F05032", bg: "#2e0e08" },
 ];
+
 
 const highlights = [
   {
