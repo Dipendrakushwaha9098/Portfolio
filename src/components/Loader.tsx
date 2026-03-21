@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 
+
 export const Loader = () => {
   return (
     <motion.div
@@ -46,6 +47,7 @@ export const Loader = () => {
           DK
         </motion.div>
 
+        
         {/* Floating Particles */}
         {[...Array(6)].map((_, i) => (
           <motion.div

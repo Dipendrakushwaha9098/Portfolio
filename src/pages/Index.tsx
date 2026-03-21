@@ -14,7 +14,7 @@ const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate initial loading time for 3D assets
+
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 2000);

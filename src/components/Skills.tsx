@@ -52,6 +52,7 @@ const skillCategories = [
   },
 ];
 
+
 const BentoCard = ({
   skill,
   index,
@@ -62,6 +63,7 @@ const BentoCard = ({
   const isTall = skill.row === "row-span-2";
   const isWide = skill.col === "col-span-2";
 
+  
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
@@ -117,6 +119,7 @@ const BentoCard = ({
           />
         </div>
 
+        
         {/* Name + dots */}
         <div>
           <p
