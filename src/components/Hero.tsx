@@ -2,16 +2,19 @@ import { Suspense, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload } from "@react-three/drei";
+import { Download } from "lucide-react";
 import { BrainModel } from "./canvas/BrainModel";
-
+ 
+import resumePDF from "@/assets/Dipendra_Kushwaha__Resume_.pdf";
+ 
 const Hero = () => {
   const ref = useRef();
-
+ 
   const { scrollY } = useScroll();
-
+ 
   const yText = useTransform(scrollY, [0, 500], [0, 150]);
   const opacityText = useTransform(scrollY, [0, 300], [1, 0]);
-
+ 
   return (
     <section
       ref={ref}
@@ -23,12 +26,12 @@ const Hero = () => {
         <Canvas camera={{ position: [0, 0, 6], fov: 45 }}>
           <ambientLight intensity={0.6} />
           <directionalLight position={[5, 5, 5]} intensity={1.2} />
-
+ 
           <Suspense fallback={null}>
             <BrainModel />
             <Preload all />
           </Suspense>
-
+ 
           <OrbitControls
             enableZoom={false}
             enablePan={false}
@@ -37,10 +40,10 @@ const Hero = () => {
           />
         </Canvas>
       </div>
-
+ 
       {/* Glow Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/60 z-0" />
-
+ 
       {/* Content */}
       <motion.div
         style={{ y: yText, opacity: opacityText }}
@@ -57,7 +60,7 @@ const Hero = () => {
             Dipendra Kushwaha
           </span>
         </motion.h1>
-
+ 
         <motion.h2
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -66,7 +69,7 @@ const Hero = () => {
         >
           Frontend Developer • AI Enthusiast
         </motion.h2>
-
+ 
         <motion.div
           initial={{ opacity: 0, scale: 0.7 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -79,16 +82,25 @@ const Hero = () => {
           >
             View Projects
           </a>
-
+ 
           <a
             href="#contact"
             className="px-8 py-4 rounded-full border border-secondary text-foreground font-semibold text-lg hover:bg-secondary/20 hover:shadow-[0_0_25px_hsl(var(--secondary)/0.4)] transition-all duration-300 hover:-translate-y-1"
           >
             Contact Me
           </a>
+ 
+          <a
+            href={resumePDF}
+            download="Dipendra_Kushwaha_Resume.pdf"
+            className="flex items-center justify-center gap-2 px-8 py-4 rounded-full border border-white/20 text-foreground font-semibold text-lg hover:bg-white/10 transition-all duration-300 hover:-translate-y-1"
+          >
+            <Download size={20} />
+            Resume
+          </a>
         </motion.div>
       </motion.div>
-
+ 
       {/* Scroll Indicator */}
       <motion.div
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
@@ -99,20 +111,17 @@ const Hero = () => {
         <span className="text-xs uppercase tracking-widest text-muted-foreground">
           Scroll
         </span>
-
+ 
         <div className="w-6 h-10 border-2 border-muted-foreground rounded-full flex justify-center p-1">
           <motion.div
             className="w-1.5 h-3 bg-primary rounded-full"
             animate={{ y: [0, 15, 0], opacity: [1, 0, 1] }}
-            transition={{
-              duration: 1.8,
-              repeat: Infinity,
-            }}
+            transition={{ duration: 1.8, repeat: Infinity }}
           />
         </div>
       </motion.div>
     </section>
   );
 };
-
+ 
 export default Hero;
