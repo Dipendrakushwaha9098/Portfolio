@@ -10,6 +10,7 @@ import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
+
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -21,6 +22,7 @@ const Index = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  
   return (
     <div className="min-h-screen bg-background text-foreground overflow-hidden selection:bg-primary/30">
       <CustomCursor />
