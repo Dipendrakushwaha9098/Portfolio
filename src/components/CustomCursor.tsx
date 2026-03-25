@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
- 
+
+
 export const CustomCursor = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const rafRef = useRef<number>(0);
@@ -89,6 +90,7 @@ export const CustomCursor = () => {
       cancelAnimationFrame(rafRef.current);
     };
   }, []);
+
  
   return (
     <>
