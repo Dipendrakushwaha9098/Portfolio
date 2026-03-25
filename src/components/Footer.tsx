@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail } from "lucide-react";
 
-
 const socials = [
   {
     icon: Github,
@@ -25,7 +24,6 @@ const socials = [
     bg: "#2e0e08",
   },
 ];
-
 
 const navLinks = ["About", "Skills", "Projects", "Contact"];
 
