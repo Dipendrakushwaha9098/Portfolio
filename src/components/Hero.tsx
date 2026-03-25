@@ -4,7 +4,8 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload } from "@react-three/drei";
 import { Download } from "lucide-react";
 import { BrainModel } from "./canvas/BrainModel";
- 
+
+
 import resumePDF from "@/assets/Dipendra_Kushwaha__Resume_.pdf";
  
 const Hero = () => {
@@ -60,7 +61,8 @@ const Hero = () => {
             Dipendra Kushwaha
           </span>
         </motion.h1>
- 
+
+       
         <motion.h2
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -100,7 +102,8 @@ const Hero = () => {
           </a>
         </motion.div>
       </motion.div>
- 
+
+     
       {/* Scroll Indicator */}
       <motion.div
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
@@ -108,6 +111,7 @@ const Hero = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
       >
+       
         <span className="text-xs uppercase tracking-widest text-muted-foreground">
           Scroll
         </span>
