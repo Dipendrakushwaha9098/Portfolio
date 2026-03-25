@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
-const skillCategories = [
+const skillCategories = [ 
   {
     category: "Frontend",
     tag: "01 / UI & Interfaces",
@@ -50,7 +50,7 @@ const skillCategories = [
       { name: "VS Code", icon: "https://cdn.simpleicons.org/visualstudiocode/007ACC", col: "col-span-1", row: "row-span-1", accent: "#007ACC", bg: "#021520" },
     ],
   },
-];
+]; 
 
 
 const BentoCard = ({
@@ -77,7 +77,7 @@ const BentoCard = ({
         border: `1px solid ${skill.accent}22`,
         minHeight: isTall ? "220px" : "105px",
       }}
-    >
+    > 
       {/* Radial glow on hover */}
       <div
         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
@@ -103,7 +103,7 @@ const BentoCard = ({
             background: `${skill.accent}18`,
             border: `1px solid ${skill.accent}30`,
           }}
-        >
+        > 
           <img
             src={skill.icon}
             alt={skill.name}
@@ -149,6 +149,7 @@ const BentoCard = ({
     </motion.div>
   );
 };
+
 
 const Skills = () => {
   return (
