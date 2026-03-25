@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import { useRef } from "react";
 
+
 const projects = [
   {
     title: "AyurSutra Panchakarma, The Patient Management System",
@@ -17,7 +18,7 @@ const projects = [
     description:
       "A fully responsive fitness website designed for gyms and trainers. It includes sections like membership plans, trainer profiles, and workout programs. The UI is optimized for engagement with smooth animations and bold design. Built to provide a strong digital presence for fitness businesses.",
     tags: ["HTML", "CSS", "JavaScript"],
-    github: "https://github.com/Dipendrakushwaha9098/gym-website.git",
+    github: "https://github.com/Dipendrakushwaha9098/gym-website.git", 
     live: "https://gym-website-swart-three.vercel.app",
     color: "#F05032",
   },
@@ -35,7 +36,7 @@ const projects = [
 
 type Project = (typeof projects)[0];
 
-const ProjectCard = ({
+const ProjectCard = ({ 
   project,
   index,
   total,
@@ -50,7 +51,7 @@ const ProjectCard = ({
     target: ref,
     offset: ["start end", "start start"],
   });
-
+ 
   const scale = useTransform(scrollYProgress, [0, 1], [0.85, 1]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [0.4, 1]);
 
