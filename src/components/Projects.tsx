@@ -5,9 +5,9 @@ import { useRef } from "react";
 
 const projects = [
   {
-    title: "AyurSutra Panchakarma, The Patient Management System",
+    title: "VedaCare , The Patient Management System",
     description:
-      "A modern wellness platform designed for Ayurvedic Panchakarma treatments. It allows users to explore therapies, book consultations, and learn about traditional healing methods. Built with a clean UI and smooth navigation for better user experience. Focused on bridging ancient Ayurveda with modern digital accessibility.",
+      "VedaCare is an AI-powered Panchkarma patient management system for Ayurvedic clinics to manage patients, therapies, and appointments efficiently.It features a modern animated UI with smart insights, reports, and personalized treatment recommendations.",
     tags: ["React", "Tailwind", "UI/UX"],
     github: "#",
     live: "#",
