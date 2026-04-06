@@ -5,9 +5,7 @@ import { OrbitControls, Preload } from "@react-three/drei";
 import { Download } from "lucide-react";
 import { BrainModel } from "./canvas/BrainModel";
 
-
 import resumePDF from "@/assets/Dipendra_Kushwaha__Resume_.pdf";
- 
 const Hero = () => {
   const ref = useRef();
  
@@ -103,7 +101,6 @@ const Hero = () => {
         </motion.div>
       </motion.div>
 
-     
       {/* Scroll Indicator */}
       <motion.div
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
