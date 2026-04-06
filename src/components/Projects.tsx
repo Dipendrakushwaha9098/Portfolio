@@ -2,7 +2,6 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import { useRef } from "react";
 
-
 const projects = [
   {
     title: "VedaCare , The Patient Management System",
