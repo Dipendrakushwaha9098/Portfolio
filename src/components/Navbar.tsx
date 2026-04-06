@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
-
 const navLinks = [
   { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
@@ -10,7 +9,6 @@ const navLinks = [
   { name: "Projects", href: "#projects" },
   { name: "Contact", href: "#contact" },
 ];
-
 
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -33,7 +31,6 @@ export const Navbar = () => {
     }
   };
 
-  
   return (
     <>
       <motion.nav
