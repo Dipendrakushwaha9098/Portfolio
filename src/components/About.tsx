@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useCallback } from "react";
- 
+
 const stats = [
   { value: "3+", label: "Projects Built" },
   { value: "2+", label: "Years Coding" },
