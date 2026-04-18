@@ -13,16 +13,34 @@ const navLinks = [
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      const currentScrollY = window.scrollY;
+
+      // Background effect
+      setScrolled(currentScrollY > 50);
+
+      // Show/Hide logic
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setShowNavbar(false); // scrolling down
+      } else {
+        setShowNavbar(true); // scrolling up
+      }
+
+      setLastScrollY(currentScrollY);
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const scrollToSection = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
     e.preventDefault();
     setIsOpen(false);
     const element = document.querySelector(href);
@@ -33,41 +51,46 @@ export const Navbar = () => {
 
   return (
     <>
+      {/* NAVBAR */}
       <motion.nav
         className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          scrolled ? "bg-background/70 backdrop-blur-md shadow-soft" : "bg-transparent"
+          scrolled
+            ? "bg-black border-b border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.4)]"
+            : "bg-gradient-to-b from-black/70 to-transparent"
         }`}
         initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        animate={{ y: showNavbar ? 0 : -120 }}
+        transition={{ duration: 0.3 }}
       >
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+          
+          {/* LOGO */}
           <a
             href="#home"
             onClick={(e) => scrollToSection(e, "#home")}
-            className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent hover:opacity-80 transition-opacity"
+            className="text-3xl font-extrabold tracking-wide bg-gradient-to-r from-primary via-pink-500 to-secondary bg-clip-text text-transparent hover:opacity-80 transition"
           >
-            Dipendra<span className="text-foreground">.dev</span>
+            DK
           </a>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex gap-8">
+          {/* DESKTOP NAV */}
+          <div className="hidden md:flex gap-6">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={(e) => scrollToSection(e, link.href)}
-                className="text-muted-foreground hover:text-primary transition-colors hover:shadow-[0_0_10px_hsl(var(--primary))] rounded-md px-2 py-1 relative group"
+                className="text-gray-300 hover:text-white transition-all duration-300 px-3 py-1.5 rounded-lg relative group hover:bg-white/5"
               >
                 {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all group-hover:w-full"></span>
+                <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full"></span>
               </a>
             ))}
           </div>
 
-          {/* Mobile Menu Toggle */}
+          {/* MOBILE BUTTON */}
           <button
-            className="md:hidden text-foreground hover:text-primary transition-colors"
+            className="md:hidden text-white hover:text-primary transition-colors"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -75,26 +98,27 @@ export const Navbar = () => {
         </div>
       </motion.nav>
 
-      {/* Mobile Nav Overlay */}
+      {/* MOBILE MENU */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl flex flex-col items-center justify-center md:hidden"
+            className="fixed inset-0 z-40 bg-black flex flex-col items-center justify-center md:hidden"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: 0.25 }}
           >
-            <div className="flex flex-col gap-8 text-center">
-              {navLinks.map((link) => (
+            <div className="flex flex-col gap-10 text-center">
+              {navLinks.map((link, index) => (
                 <motion.a
                   key={link.name}
                   href={link.href}
                   onClick={(e) => scrollToSection(e, link.href)}
-                  className="text-3xl font-semibold text-foreground hover:text-primary transition-colors"
+                  className="text-3xl font-semibold text-white hover:text-primary transition-colors"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 20 }}
+                  transition={{ delay: index * 0.05 }}
                 >
                   {link.name}
                 </motion.a>

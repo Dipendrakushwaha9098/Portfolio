@@ -1,242 +1,152 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ExternalLink, Github } from "lucide-react";
 import { useRef } from "react";
+import { ExternalLink, Github } from "lucide-react";
 
 const projects = [
   {
-    title: "VedaCare , The Patient Management System",
+    title: "AyurSutra Panchakarma, The Patient Management System",
     description:
-      "VedaCare is an AI-powered Panchkarma patient management system for Ayurvedic clinics to manage patients, therapies, and appointments efficiently.It features a modern animated UI with smart insights, reports, and personalized treatment recommendations.",
+      "A modern wellness platform designed for Ayurvedic Panchakarma treatments. It allows users to explore therapies, book consultations, and learn about traditional healing methods.",
     tags: ["React", "Tailwind", "UI/UX"],
     github: "#",
     live: "#",
-    color: "#61DAFB",
+    color: "#4CAF50",
   },
   {
-    title: "Gym Website",
+    title: "AI Resume Analyzer",
     description:
-      "A fully responsive fitness website designed for gyms and trainers. It includes sections like membership plans, trainer profiles, and workout programs. The UI is optimized for engagement with smooth animations and bold design. Built to provide a strong digital presence for fitness businesses.",
+      "A fully responsive fitness website designed for gyms and trainers with modern UI and smooth animations.",
     tags: ["HTML", "CSS", "JavaScript"],
-    github: "https://github.com/Dipendrakushwaha9098/gym-website.git", 
+    github: "https://github.com/Dipendrakushwaha9098/gym-website.git",
     live: "https://gym-website-swart-three.vercel.app",
     color: "#F05032",
   },
   {
     title: "SkillPilot AI",
     description:
-      "An AI-powered platform that generates personalized learning roadmaps for users. It analyzes user goals and provides structured skill paths with recommendations. Built with modern frontend tools and integrated AI APIs. Designed to help learners stay focused and achieve career goals efficiently.",
+      "Generates personalized learning roadmaps using AI to help users achieve career goals efficiently.",
     tags: ["React", "Node.js", "AI"],
     github: "https://github.com/Dipendrakushwaha9098/SkillPilot-ai.git",
     live: "#",
-    status: "in-progress",
     color: "#FFD43B",
   },
 ];
 
 type Project = (typeof projects)[0];
 
-const ProjectCard = ({ 
+const ProjectCard = ({
   project,
   index,
-  total,
 }: {
   project: Project;
   index: number;
-  total: number;
 }) => {
   const ref = useRef<HTMLDivElement | null>(null);
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "start start"],
+    offset: ["start start", "end start"],
   });
- 
-  const scale = useTransform(scrollYProgress, [0, 1], [0.85, 1]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [0.4, 1]);
+
+  const rotateX = useTransform(scrollYProgress, [0, 1], [0, -80]);
+  const scale = useTransform(scrollYProgress, [0, 1], [0.95, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.6], [0.6, 1]);
 
   return (
     <motion.div
       ref={ref}
       style={{
+        rotateX,
         scale,
         opacity,
-        position: "sticky",
-        top: `${60 + index * 24}px`,
-        zIndex: index + 1,
-        border: `1px solid ${project.color}33`,
+        transformOrigin: "top center",
+        transformStyle: "preserve-3d",
+        zIndex: 10 - index,
       }}
-      className="group relative p-10 rounded-3xl bg-card/60 backdrop-blur-xl transition-all duration-500 overflow-hidden"
-      whileHover={{ scale: 1.02 }}
+      className="h-screen sticky top-0 flex items-center justify-center px-6"
     >
-      {/* Top Accent */}
-      <div
-        className="absolute top-0 left-0 h-0.5 w-full"
-        style={{
-          background: `linear-gradient(90deg, ${project.color}, transparent)`,
+      {/* CARD */}
+      <motion.div
+        whileHover={{
+          scale: 1.02,
+          boxShadow: `0 40px 80px rgba(0,0,0,0.6), 0 0 25px ${project.color}`,
         }}
-      />
-
-      {/* Hover Glow */}
-      <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 rounded-3xl pointer-events-none"
+        transition={{ duration: 0.3 }}
+        className="relative max-w-4xl w-full p-10 rounded-3xl"
         style={{
-          background: `radial-gradient(circle at 20% 50%, ${project.color}12 0%, transparent 60%)`,
+          background: "rgba(255,255,255,0.06)",
+          border: `1px solid ${project.color}`,
+          backdropFilter: "blur(8px)",
         }}
-      />
-
-      <div className="relative z-10 flex flex-col gap-6">
-
-        {/* Index + Status */}
-        <div className="flex items-center justify-between">
-          <span
-            className="text-xs font-mono"
-            style={{ color: `${project.color}88` }}
+      >
+        {/* CONTENT */}
+        <div className="relative z-10">
+          {/* Title */}
+          <h2
+            className="text-4xl md:text-5xl mb-6"
+            style={{ color: project.color }}
           >
-            {String(index + 1).padStart(2, "0")} /{" "}
-            {String(total).padStart(2, "0")}
-          </span>
+            {project.title}
+          </h2>
 
-          {project.status === "in-progress" && (
-            <motion.span
-              className="px-3 py-1 text-xs rounded-full flex items-center gap-1.5"
-              style={{
-                background: "#2a220088",
-                border: "1px solid #FFD43B44",
-                color: "#FFD43B",
-              }}
-              animate={{ opacity: [0.6, 1, 0.6] }}
-              transition={{ repeat: Infinity, duration: 1.5 }}
-            >
+          {/* Description */}
+          <p className="text-lg text-white/80 mb-6">
+            {project.description}
+          </p>
+
+          {/* Tags */}
+          <div className="flex flex-wrap gap-3 mb-6">
+            {project.tags.map((tag, i) => (
               <span
-                className="w-1.5 h-1.5 rounded-full"
+                key={i}
+                className="px-4 py-1 rounded-full text-sm"
                 style={{
-                  background: "#FFD43B",
-                  boxShadow: "0 0 6px #FFD43B",
+                  background: `${project.color}30`,
+                  border: `1px solid ${project.color}`,
+                  color: project.color,
                 }}
-              />
-              In Progress
-            </motion.span>
-          )}
-        </div>
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
 
-        {/* Title */}
-        <h3
-          className="text-3xl md:text-4xl font-bold transition-colors duration-300"
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLHeadingElement).style.color =
-              project.color;
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLHeadingElement).style.color = "inherit";
-          }}
-        >
-          {project.title}
-        </h3>
-
-        {/* Divider */}
-        <div
-          className="w-full h-px"
-          style={{
-            background: `linear-gradient(90deg, ${project.color}44, transparent)`,
-          }}
-        />
-
-        {/* Description */}
-        <p className="text-muted-foreground leading-relaxed text-lg">
-          {project.description}
-        </p>
-
-        {/* Tags */}
-        <div className="flex flex-wrap gap-3">
-          {project.tags.map((tag, i) => (
-            <span
-              key={i}
-              className="px-4 py-1 text-sm rounded-full"
+          {/* Buttons */}
+          <div className="flex gap-4">
+            <a
+              href={project.github}
+              target="_blank"
+              className="flex items-center gap-2 px-5 py-2 rounded-full transition"
               style={{
-                background: `${project.color}15`,
-                border: `1px solid ${project.color}33`,
+                border: `1px solid ${project.color}`,
                 color: project.color,
               }}
             >
-              {tag}
-            </span>
-          ))}
-        </div>
+              <Github size={18} />
+              Code
+            </a>
 
-        {/* Links */}
-        <div className="flex gap-4 pt-2">
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 px-5 py-2 rounded-full text-sm font-medium transition-all duration-300"
-            style={{
-              background: `${project.color}18`,
-              border: `1px solid ${project.color}44`,
-              color: project.color,
-            }}
-          >
-            <Github size={18} />
-            Code
-          </a>
-
-          <a
-            href={project.live}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 px-5 py-2 rounded-full text-sm font-medium transition-all duration-300"
-            style={{
-              background: "rgba(255,255,255,0.05)",
-              border: "1px solid rgba(255,255,255,0.15)",
-              color: "rgba(255,255,255,0.7)",
-            }}
-          >
-            <ExternalLink size={18} />
-            Live
-          </a>
+            <a
+              href={project.live}
+              target="_blank"
+              className="flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition"
+            >
+              <ExternalLink size={18} />
+              Live
+            </a>
+          </div>
         </div>
-      </div>
+      </motion.div>
     </motion.div>
   );
 };
 
 const Projects = () => {
   return (
-    <section
-      id="projects"
-      className="relative w-full py-24 px-6 flex justify-center overflow-hidden"
-    >
-      {/* Background Glow */}
-      <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-primary/10 blur-[120px] rounded-full" />
-      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-secondary/10 blur-[100px] rounded-full" />
-
-      <div className="max-w-5xl w-full relative z-10">
-
-        {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-20"
-        >
-          <h2 className="text-4xl md:text-6xl font-bold mb-4">
-            Featured <span className="gradient-text">Projects</span>
-          </h2>
-          <div className="w-28 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
-        </motion.div>
-
-        {/* Stacked Cards */}
-        <div className="flex flex-col gap-6 pb-32">
-          {projects.map((project, index) => (
-            <ProjectCard
-              key={index}
-              project={project}
-              index={index}
-              total={projects.length}
-            />
-          ))}
-        </div>
-      </div>
+    <section id="projects" style={{ perspective: "1400px" }}>
+      {projects.map((project, index) => (
+        <ProjectCard key={index} project={project} index={index} />
+      ))}
     </section>
   );
 };
