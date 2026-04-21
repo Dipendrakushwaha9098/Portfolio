@@ -17,8 +17,8 @@ const projects = [
     description:
       "A fully responsive fitness website designed for gyms and trainers with modern UI and smooth animations.",
     tags: ["HTML", "CSS", "JavaScript"],
-    github: "https://github.com/Dipendrakushwaha9098/gym-website.git",
-    live: "https://gym-website-swart-three.vercel.app",
+    github: "#",
+    live: "#",
     color: "#F05032",
   },
   {
