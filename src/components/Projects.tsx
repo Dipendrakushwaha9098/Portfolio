@@ -4,7 +4,7 @@ import { ExternalLink, Github } from "lucide-react";
 
 const projects = [
   {
-    title: "AyurSutra Panchakarma, The Patient Management System",
+    title: "CareConnect, The Patient Management System",
     description:
       "A modern wellness platform designed for Ayurvedic Panchakarma treatments. It allows users to explore therapies, book consultations, and learn about traditional healing methods.",
     tags: ["React", "Tailwind", "UI/UX"],
