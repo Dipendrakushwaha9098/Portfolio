@@ -1,8 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Allura&family=Caveat:wght@400;500;600;700&family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes&family=Inter:wght@300;400;500;600;700&family=Parisienne&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .font-cursive {
+    font-family: 'Dancing Script', 'Caveat', cursive, sans-serif;
+    letter-spacing: 0.015em;
+  }
+  .font-handwriting {
+    font-family: 'Caveat', 'Dancing Script', cursive, sans-serif;
+  }
+  .font-heading {
+    font-family: 'Dancing Script', 'Caveat', cursive, sans-serif;
+    letter-spacing: 0.015em;
+  }
+}
 
 @layer base {
   :root {
@@ -42,6 +56,16 @@
 @layer base {
   * {
     @apply border-border;
+  }
+
+  h1 {
+    font-family: 'Dancing Script', 'Caveat', cursive, sans-serif;
+  }
+
+  /* Relax tracking for smooth connected cursive handwriting on main heading */
+  h1.tracking-tight,
+  h1.tracking-tighter {
+    letter-spacing: 0.015em;
   }
 
   body {
@@ -119,10 +143,48 @@
   100% { background-position: 200% }
 }
 
-/* Float Animation */
+/* Float Animations */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(0.4deg);
+  }
+}
+
+@keyframes float-reverse {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(10px) rotate(-0.4deg);
+  }
+}
+
+@keyframes float-subtle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.04);
+  }
 }
 
 /* Shimmer Effect */
@@ -132,16 +194,49 @@
   }
 }
 
-/* Smooth Scale */
-@keyframes scaleIn {
-  from {
-    transform: scale(0.9);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
+/* 3D Floating Utilities */
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: float-reverse 7s ease-in-out infinite;
+}
+
+.animate-float-subtle {
+  animation: float-subtle 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.perspective-1200 {
+  perspective: 1200px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.translate-z-10 {
+  transform: translateZ(10px);
+}
+
+.translate-z-20 {
+  transform: translateZ(20px);
+}
+
+.translate-z-30 {
+  transform: translateZ(30px);
+}
+
+.translate-z-40 {
+  transform: translateZ(40px);
 }
 
 /* Hide horizontal scrollbar */
@@ -152,3 +247,115 @@
 .no-scrollbar {
   scrollbar-width: none;
 }
+
+/* ================= SCROLL ANIMATIONS ================= */
+
+/* Clip-path text reveal: text slides up from behind a mask */
+@keyframes text-reveal {
+  0% {
+    clip-path: inset(0 0 100% 0);
+    transform: translateY(18px);
+    opacity: 0;
+  }
+  100% {
+    clip-path: inset(0 0 0% 0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Horizontal slide-in from left */
+@keyframes slide-in-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Horizontal slide-in from right */
+@keyframes slide-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Scale-up reveal */
+@keyframes scale-reveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.88) translateY(20px);
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0px);
+  }
+}
+
+/* Fade up with blur */
+@keyframes fade-up-blur {
+  0% {
+    opacity: 0;
+    transform: translateY(28px);
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+  }
+}
+
+/* Subtle stagger children — apply to parent */
+.stagger-children > * {
+  opacity: 0;
+  animation: fade-up-blur 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.13s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.21s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.29s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.37s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.45s; }
+
+/* Animate once visible — trigger via IntersectionObserver */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  filter: blur(6px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0px);
+}
+
+/* Reduced motion overrides */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal,
+  .scroll-reveal.revealed,
+  .stagger-children > * {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
+

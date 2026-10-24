@@ -18,7 +18,7 @@ const socials = [
   },
   {
     icon: Mail,
-    href: "dipendrakushwaha2846@gmail.com",
+    href: "mailto:dipendrakushwaha2846@gmail.com",
     label: "Email",
     accent: "#F05032",
     bg: "#2e0e08",
@@ -48,17 +48,17 @@ const Footer = () => {
           {/* Branding */}
           <div>
             <p
-              className="text-xs font-mono tracking-[0.3em] uppercase mb-1"
-              style={{ color: "rgba(255,255,255,0.2)" }}
+              className="text-sm font-mono tracking-[0.3em] uppercase mb-1 font-medium"
+              style={{ color: "rgba(255,255,255,0.35)" }}
             >
               sys.exit(0)
             </p>
-            <h2 className="text-2xl md:text-3xl font-bold gradient-text">
+            <h2 className="text-3xl md:text-5xl font-cursive font-bold gradient-text">
               Dipendra Kushwaha
             </h2>
             <p
-              className="text-sm font-mono mt-1"
-              style={{ color: "rgba(255,255,255,0.3)" }}
+              className="text-base font-mono mt-1.5"
+              style={{ color: "rgba(255,255,255,0.5)" }}
             >
               Full Stack Developer & AI Enthusiast
             </p>
@@ -75,7 +75,7 @@ const Footer = () => {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.07, duration: 0.3 }}
                 whileHover={{ scale: 1.05 }}
-                className="px-4 py-2 rounded-xl text-sm font-mono tracking-wider transition-all duration-300"
+                className="px-4 py-2 rounded-xl text-base font-mono tracking-wider transition-all duration-300"
                 style={{
                   background: "rgba(255,255,255,0.02)",
                   border: "1px solid rgba(255,255,255,0.07)",
@@ -149,8 +149,8 @@ const Footer = () => {
                     style={{ color: s.accent }}
                   />
                   <span
-                    className="relative z-10 text-xs font-mono"
-                    style={{ color: `${s.accent}77` }}
+                    className="relative z-10 text-sm font-mono"
+                    style={{ color: `${s.accent}88` }}
                   >
                     {s.label}
                   </span>
@@ -162,14 +162,14 @@ const Footer = () => {
           {/* Copyright */}
           <div className="text-right">
             <p
-              className="text-xs font-mono"
-              style={{ color: "rgba(255,255,255,0.2)" }}
+              className="text-sm font-mono"
+              style={{ color: "rgba(255,255,255,0.4)" }}
             >
               © {new Date().getFullYear()} Dipendra Kushwaha
             </p>
             <p
               className="text-xs font-mono mt-0.5"
-              style={{ color: "rgba(255,255,255,0.12)" }}
+              style={{ color: "rgba(255,255,255,0.25)" }}
             >
               Built with React & Framer Motion
             </p>

@@ -38,7 +38,7 @@ export const Loader = () => {
 
         {/* Center Text */}
         <motion.div
-          className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent tracking-widest"
+          className="font-cursive text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent tracking-wider"
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: [0.9, 1.1, 1], opacity: 1 }}
           transition={{ duration: 1 }}

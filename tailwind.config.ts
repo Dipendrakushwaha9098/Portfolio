@@ -20,6 +20,9 @@ export default {
 		extend: {
 			fontFamily: {
 				'inter': ['Inter', 'sans-serif'],
+				'cursive': ['Dancing Script', 'Caveat', 'Great Vibes', 'Alex Brush', 'Allura', 'cursive', 'sans-serif'],
+				'handwriting': ['Caveat', 'Dancing Script', 'cursive', 'sans-serif'],
+				'heading': ['Dancing Script', 'Caveat', 'cursive', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',

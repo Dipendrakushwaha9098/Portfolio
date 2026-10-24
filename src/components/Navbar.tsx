@@ -55,8 +55,8 @@ export const Navbar = () => {
       <motion.nav
         className={`fixed top-0 w-full z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-black border-b border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.4)]"
-            : "bg-gradient-to-b from-black/70 to-transparent"
+            ? "bg-[#030712]/75 backdrop-blur-2xl border-b border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.6)]"
+            : "bg-gradient-to-b from-[#030712]/80 via-[#030712]/20 to-transparent backdrop-blur-[2px]"
         }`}
         initial={{ y: -100 }}
         animate={{ y: showNavbar ? 0 : -120 }}
@@ -68,9 +68,9 @@ export const Navbar = () => {
           <a
             href="#home"
             onClick={(e) => scrollToSection(e, "#home")}
-            className="text-3xl font-extrabold tracking-wide bg-gradient-to-r from-primary via-pink-500 to-secondary bg-clip-text text-transparent hover:opacity-80 transition"
+            className="font-cursive text-3xl md:text-4xl font-bold tracking-wide bg-gradient-to-r from-primary via-pink-500 to-secondary bg-clip-text text-transparent hover:opacity-80 transition"
           >
-            DK
+            Dipendra
           </a>
 
           {/* DESKTOP NAV */}
